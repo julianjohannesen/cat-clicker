@@ -1,0 +1,31 @@
+body {
+    background: url(../assets/kitty.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    display: grid;
+    grid-template: 25vmin 1fr 1fr / 1fr 1fr 1fr;
+    
+    font-size: 10vmin;
+    white-space: nowrap;
+
+    height: 100vmin;
+
+    
+}
+
+header {
+    grid-area: 3 / 2 / 4 / 3;
+    text-align: center;
+}
+
+header h1, header h2 {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+#clickDisplay {
+    
+}
