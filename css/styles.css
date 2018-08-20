@@ -1,13 +1,13 @@
 body {
-    background: url(../assets/kitty.jpg) no-repeat center center fixed; 
+    /* background: url(../assets/kitty.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-size: cover; */
 
     display: grid;
-    grid-template: 25vmin 1fr 1fr / 1fr 1fr 1fr;
-    
+    grid-template: 25vmin 1fr 1fr / 1fr 1fr;
+    grid-gap: 2vmin;
     font-size: 10vmin;
     white-space: nowrap;
 
