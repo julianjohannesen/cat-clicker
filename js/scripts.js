@@ -1,45 +1,45 @@
-// Cat Constructor
-// function Cat(catObject){
-//     const figure = document.createElement("figure");
-//     figure.id = `cat-${catObject.title}`;
-//     const image = document.createElement("img");
-//     image.src = catObject.src;
-//     image.alt = catObject.alt;
-//     const caption = document.createElement("figcaption");
-//     caption.textContent = catObject.caption;
-// }
+Cat Constructor
+function Cat(catObject){
+    const figure = document.createElement("figure");
+    figure.id = `cat-${catObject.title}`;
+    const image = document.createElement("img");
+    image.src = catObject.src;
+    image.alt = catObject.alt;
+    const caption = document.createElement("figcaption");
+    caption.textContent = catObject.caption;
+}
 
-// //append the cat node to the cat section
-// function appendCatNode(){
-//     // Clear the contents of the "cat" section and append a new node
-//     clearCatSection().appendChild(buildCatNode());
+//append the cat node to the cat section
+function appendNode(){
+    // Clear the contents of the "cat" section and append a new node
+    clearCatSection().appendChild(buildCatNode());
 
-//     //Variable and function definitions
-//     const catSection = document.getElementById("catSection");
+    //Variable and function definitions
+    const catSection = document.getElementById("catSection");
 
-//     //Overwrite the catSection with an empty string
-//     function clearCatSection(){
-//         catSection.innerHTML = '';
-//         return catSection
-//     }
+    //Overwrite the catSection with an empty string
+    function clearCatSection(){
+        catSection.innerHTML = '';
+        return catSection
+    }
 
-//     // Build the cat section node
-//     function buildCatNode(){
-//         // Create a fragment to hold cat nodes
-//         const domFrag = document.createDocumentFragment();
-//         // buildCatArray returns an array of cat instances each of which is a node. Those nodes are appended one by one to the fragment.
-//         buildCatArray().forEach( cat => domFrag.appendChild(cat) );
+    // Build the cat section node - should this be a Cat method?
+    function buildCatNode(){
+        // Create a fragment to hold cat nodes
+        const domFrag = document.createDocumentFragment();
+        // buildCatArray returns an array of cat instances each of which is a node. Those nodes are appended one by one to the fragment.
+        buildCatArray().forEach( cat => domFrag.appendChild(cat) );
 
-//         //Build the cat array
-//         function buildCatArray(){
-//             // Build an array of new cat instances
-//             // The Cat constructor will take an individual cat object as its argument and use it to build a new cat instance
-//             return data.map( cat => new Cat(cat) );
-//         }
+        //Build the cat array
+        function buildCatArray(){
+            // Build an array of new cat instances
+            // The Cat constructor will take an individual cat object as its argument and use it to build a new cat instance
+            return data.map( cat => new Cat(cat) );
+        }
 
-//         return domFrag;
-//     }
-// }
+        return domFrag;
+    }
+}
 
 const cl = console.log;
 
