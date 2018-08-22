@@ -56,20 +56,14 @@ function sendRequest(){
     const limit = document.getElementById("catNum").value;
     const apiURL = `https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=${limit}`;
     const init = {
-        method: "GET", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, cors, *same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "include", // include, same-origin, *omit
+        credentials: "include",
         headers: {
+            "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
             "Content-Type": "application/json; charset=utf-8",
-            // "Content-Type": "application/x-www-form-urlencoded",
-        },
-        redirect: "follow", // manual, *follow, error
-        referrer: "no-referrer", // no-referrer, *client
-        body: JSON.stringify(data), // body data type must match "Content-Type" header
-
+            "x-api-key": "be8e2b27-8de8-42e7-b1c0-49a0a0e6cf06"
+        }
     };
-    const apiKey = "be8e2b27-8de8-42e7-b1c0-49a0a0e6cf06";
+    
     fetch(apiURL, init)
     .then(function(response) {
         return response.json();
