@@ -77,12 +77,6 @@ function sendRequest(){
             return `https://api.petfinder.com/${this.method}?key=${this.key}&format=${this.format}&output=${output}&animal=${animal}&count=${count}&location=${location}`;
         }
     }
-    
-    // The PetFinder API uses JSONP to allow cross domain requests and does not support CORS, hence the no-cors mode
-    // const init = {
-    //     "mode": "no-cors",
-    //     timeout: 5000
-    // }
 
     // The Fetch API does not provide support for JSONP. fetchJsonp is part of the fetch-jsonp library which provides support for JSONP
     fetchJsonp(new BuildURL(paramsArray).build(), {
