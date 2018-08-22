@@ -1,75 +1,99 @@
-// DOM objects
-const section = document.getElementById("catSection");
-const figure = document.createElement("figure");
-const image = document.createElement("img");
-const caption = document.createElement("figcaption");
+// // DOM objects
+// const section = document.getElementById("catSection");
+// const figure = document.createElement("figure");
+// const image = document.createElement("img");
+// const caption = document.createElement("figcaption");
 
 
-// Cat Constructor
-function Cat(imageObject){
-    this.id = `cat-${imageObject.id}`;
-    this.src = imageObject.src;
-    this.alt = imageObject.alt;
-    this.caption = imageObject.caption;
-}
+// // Cat Constructor
+// function Cat(imageObject){
+//     this.id = `cat-${imageObject.id}`;
+//     this.src = imageObject.src;
+//     this.alt = imageObject.alt;
+//     this.caption = imageObject.caption;
+// }
 
-Cat.prototype.buildNode = function(){
+// Cat.prototype.buildNode = function(){
 
-}
+// }
 
-//append the node to the section
-function appendNode(){
-    // Clear the contents of the "cat" section and append a new node
-    clearHTML().appendChild(buildNode());
+// //append the node to the section
+// function appendNode(){
+//     // Clear the contents of the "cat" section and append a new node
+//     clearHTML().appendChild(buildNode());
 
-    //Overwrite the section with an empty string
-    function clearHTML(target){
-        target.innerHTML = '';
-        return target
-    }
+//     //Overwrite the section with an empty string
+//     function clearHTML(target){
+//         target.innerHTML = '';
+//         return target
+//     }
 
-    // Build the cat section node - should this be a Cat method?
-    function buildNode(responseData){
-        // Create a fragment to hold cat nodes
-        const domFrag = document.createDocumentFragment();
-        // buildCatArray returns an array of cat instances, e.g. [{...}, {...}], each of which is a node. Those nodes are appended one by one to the fragment.
-        // What exactly am I appending here? I have a new cat object instance from my constructor. How do I append that? This isn't going to work. I need to pass a node object to appendChild
-        buildArray().forEach( element => domFrag.appendChild(element) );
+//     // Build the cat section node - should this be a Cat method?
+//     function buildNode(responseData){
+//         // Create a fragment to hold cat nodes
+//         const domFrag = document.createDocumentFragment();
+//         // buildCatArray returns an array of cat instances, e.g. [{...}, {...}], each of which is a node. Those nodes are appended one by one to the fragment.
+//         // What exactly am I appending here? I have a new cat object instance from my constructor. How do I append that? This isn't going to work. I need to pass a node object to appendChild
+//         buildArray().forEach( element => domFrag.appendChild(element) );
 
-        //Build the array
-        function buildArray(){
-            // Build an array of new instances
-            // The Cat constructor will take an individual cat object from the api response data as its argument and use it to build a new cat instance
-            return responseData.map( element => new Cat(element) );
-        }
+//         //Build the array
+//         function buildArray(){
+//             // Build an array of new instances
+//             // The Cat constructor will take an individual cat object from the api response data as its argument and use it to build a new cat instance
+//             return responseData.map( element => new Cat(element) );
+//         }
 
-        return domFrag;
-    }
-}
+//         return domFrag;
+//     }
+// }
 
-const cl = console.log;
 
-let data;
+const paramsArray = [
+    "pet.find",
+    "add4fdca944ac818ef1bee3a08e0602b",
+    "json",
+    "full",
+    "cat",
+    document.getElementById("catNum").value
+];
+
 // Request data from the cat API
 function sendRequest(){
     
-    const limit = document.getElementById("catNum").value;
-    const apiURL = `https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=${limit}`;
-    const init = {
-        credentials: "include",
-        headers: {
-            "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
-            "Content-Type": "application/json; charset=utf-8",
-            "x-api-key": "be8e2b27-8de8-42e7-b1c0-49a0a0e6cf06"
+    class BuildURL{
+        constructor(arr){
+            this.method = arr[0];
+            this.key = arr[1];
+            this.format = arr[2];
+            this.output = arr[3];
+            this.animal = arr[4];
+            this.count = arr[5]; 
         }
-    };
+        // The PetFinder API uses JSONP to allow cross domain requests and does not support CORS, hence the callback argument
+        build(){
+            return `http://api.petfinder.com/${this.method}?key=${this.key}&format=${this.format}`;
+        }
+    }
     
-    fetch(apiURL, init)
+    // The PetFinder API uses JSONP to allow cross domain requests and does not support CORS, hence the no-cors mode
+    // const init = {
+    //     "mode": "no-cors",
+    //     timeout: 5000
+    // }
+
+    // The Fetch API does not provide support for JSONP. fetchJsonp is part of the fetch-jsonp library which provides support for JSONP
+    fetchJsonp(new BuildURL(paramsArray).build(), {
+        jsonpCallback: 'callback',
+        timeout: 10000
+      })
     .then(function(response) {
         return response.json();
     })
     .then(function(myJson) {
         console.log(myJson);
+    })
+    .catch(function(response) {
+        console.log('Something went wrong: ', response)
     });
 
 }
