@@ -53,7 +53,7 @@ const paramsArray = [
     "add4fdca944ac818ef1bee3a08e0602b",
     "json",
     "full",
-    "cat",
+    "Cat",
     document.getElementById("catNum").value,
     document.getElementById("location").value,
 ];
@@ -73,13 +73,13 @@ function sendRequest(){
         }
         // The PetFinder API uses JSONP to allow cross domain requests and does not support CORS, hence the callback argument
         build(){
-            return `https://api.petfinder.com/${this.method}?key=${this.key}&format=${this.format}&location=${this.location}`;
+            return `https://api.petfinder.com/${this.method}?key=${this.key}&format=${this.format}&location=${this.location}&count=${this.count}`;
         }
     }
 
     // The Fetch API does not provide support for JSONP. fetchJsonp is part of the fetch-jsonp library which provides support for JSONP
     fetchJsonp(new BuildURL(paramsArray).build(), {
-        jsonpCallback: '?',
+        jsonpCallback: 'callback',
         timeout: 10000
       })
     .then(function(response) {
