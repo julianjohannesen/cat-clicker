@@ -71,7 +71,7 @@ function sendRequest(){
         }
         // The PetFinder API uses JSONP to allow cross domain requests and does not support CORS, hence the callback argument
         build(){
-            return `http://api.petfinder.com/${this.method}?key=${this.key}&format=${this.format}`;
+            return `https://api.petfinder.com/${this.method}?key=${this.key}&format=${this.format}`;
         }
     }
     
