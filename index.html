@@ -19,8 +19,12 @@
     <main>
         <p>Choose a number of kitties. Give each kitty as many "paws up" as you want.</p>
         <form id="form">
+            <label for="location">
+                        What's your zip? <input name="location" id="location" type="text" placeholder="02111" pattern="[0-9]{5}" size="5" required>
+                        <span class="validity"></span>
+                      </label>
             <label for="catNum">
-              How many kitties? <input name="catNum" id="catNum" type="number" step="1" min="1" max="20" value="2" required>
+              How many kitties? <input name="catNum" id="catNum" type="number" step="1" min="1" max="20" value="2" size="2" required>
               <span class="validity"></span>
             </label>
             <button type="button" name="catButton" id="catButton" >Kitties!</button>  

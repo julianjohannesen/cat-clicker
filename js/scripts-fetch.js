@@ -54,7 +54,9 @@ const paramsArray = [
     "json",
     "full",
     "cat",
-    document.getElementById("catNum").value
+    document.getElementById("catNum").value,
+    document.getElementById("location").value,
+
 ];
 
 // Request data from the cat API
@@ -68,10 +70,11 @@ function sendRequest(){
             this.output = arr[3];
             this.animal = arr[4];
             this.count = arr[5]; 
+            this.location = arr[6]
         }
         // The PetFinder API uses JSONP to allow cross domain requests and does not support CORS, hence the callback argument
         build(){
-            return `https://api.petfinder.com/${this.method}?key=${this.key}&format=${this.format}`;
+            return `https://api.petfinder.com/${this.method}?key=${this.key}&format=${this.format}&output=${output}&animal=${animal}&count=${count}&location=${location}`;
         }
     }
     
