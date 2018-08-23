@@ -26,9 +26,11 @@
     "jsdom-quokka-plugin": "^1.0.13"
   },
   
-  "plugins": ["jsdom-quokka-plugin"],
-  "jsdom": {
-    "file": "/index.html"
-  }
+  "quokka" {
+    "plugins": ["jsdom-quokka-plugin"],
+    "jsdom": {
+      "file": "./index.html"
+    }
+}
 
 }

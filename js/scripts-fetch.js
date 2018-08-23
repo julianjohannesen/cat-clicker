@@ -47,9 +47,7 @@
 //     }
 // }
 
-const count = document.getElementById("catNum").value;
-const cityState = document.getElementById("myLocation").value.replace(/ +/g, "");/*?*/
-
+let count = 10, cityState = "Boston,MA"
 const params = {
     method: "pet.find",
     key: "add4fdca944ac818ef1bee3a08e0602b",
@@ -79,7 +77,10 @@ function sendRequest(){
         }
     }
 
-    console.log(new BuildURL(params).build())
+    count = document.getElementById("catNum").value;
+    cityState = document.getElementById("myLocation").value.replace(/ +/g, "");
+
+    console.log(new BuildURL(params).build(), count, cityState)
     // The Fetch API does not provide support for JSONP. fetchJsonp is part of the fetch-jsonp library which provides support for JSONP
     fetchJsonp(new BuildURL(params).build(), {
         jsonpCallback: 'callback',
