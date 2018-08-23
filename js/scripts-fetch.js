@@ -47,38 +47,41 @@
 //     }
 // }
 
+const count = document.getElementById("catNum").value;
+const cityState = document.getElementById("myLocation").value.replace(/ +/g, "");/*?*/
 
-const paramsArray = [
-    "pet.find",
-    "add4fdca944ac818ef1bee3a08e0602b",
-    "json",
-    "full",
-    "Cat",
-    document.getElementById("catNum").value,
-    document.getElementById("location").value,
-];
+const params = {
+    method: "pet.find",
+    key: "add4fdca944ac818ef1bee3a08e0602b",
+    format: "json",
+    output: "full",
+    animal: "Cat",
+    count: count,
+    myLocation: cityState
+};
 
 // Request data from the cat API
 function sendRequest(){
     
     class BuildURL{
-        constructor(arr){
-            this.method = arr[0];
-            this.key = arr[1];
-            this.format = arr[2];
-            this.output = arr[3];
-            this.animal = arr[4];
-            this.count = arr[5]; 
-            this.location = arr[6]
+        constructor(params){
+            this.method = params.method;
+            this.key = params.key;
+            this.format = params.format;
+            this.output = params.output;
+            this.animal = params.animal;
+            this.count = params.count; 
+            this.myLocation = params.myLocation;
         }
         // The PetFinder API uses JSONP to allow cross domain requests and does not support CORS, hence the callback argument
         build(){
-            return `https://api.petfinder.com/${this.method}?key=${this.key}&format=${this.format}&location=${this.location}&count=${this.count}`;
+            return encodeURI(`https://api.petfinder.com/${this.method}?key=${this.key}&format=${this.format}&location=${myLocation}&count=${this.count}`);
         }
     }
 
+    console.log(new BuildURL(params).build())
     // The Fetch API does not provide support for JSONP. fetchJsonp is part of the fetch-jsonp library which provides support for JSONP
-    fetchJsonp(new BuildURL(paramsArray).build(), {
+    fetchJsonp(new BuildURL(params).build(), {
         jsonpCallback: 'callback',
         timeout: 10000
       })
