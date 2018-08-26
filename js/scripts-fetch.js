@@ -47,19 +47,19 @@
 //     }
 // }
 
-let count = 10, cityState = "Boston,MA"
-const params = {
-    method: "pet.find",
-    key: "add4fdca944ac818ef1bee3a08e0602b",
-    format: "json",
-    output: "full",
-    animal: "Cat",
-    count: count,
-    myLocation: cityState
-};
 
 // Request data from the cat API
 function sendRequest(){
+
+    const params = {
+        method: "pet.find",
+        key: "add4fdca944ac818ef1bee3a08e0602b",
+        format: "json",
+        output: "full",
+        animal: "Cat",
+        count: document.getElementById("catNum").value,
+        myLocation: document.getElementById("myLocation").value.replace(/ +/g, "")
+    };
     
     class BuildURL{
         constructor(params){
@@ -73,14 +73,12 @@ function sendRequest(){
         }
         // The PetFinder API uses JSONP to allow cross domain requests and does not support CORS, hence the callback argument
         build(){
-            return encodeURI(`https://api.petfinder.com/${this.method}?key=${this.key}&format=${this.format}&location=${myLocation}&count=${this.count}`);
+            return encodeURI(`https://api.petfinder.com/${this.method}?key=${this.key}&format=${this.format}&location=${this.myLocation}&count=${this.count}`);
         }
     }
 
-    count = document.getElementById("catNum").value;
-    cityState = document.getElementById("myLocation").value.replace(/ +/g, "");
-
-    console.log(new BuildURL(params).build(), count, cityState)
+    console.log(new BuildURL(params).build(), params.myLocation, params.count)
+    
     // The Fetch API does not provide support for JSONP. fetchJsonp is part of the fetch-jsonp library which provides support for JSONP
     fetchJsonp(new BuildURL(params).build(), {
         jsonpCallback: 'callback',
