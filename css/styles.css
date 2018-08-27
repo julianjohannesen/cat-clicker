@@ -10,18 +10,20 @@
 /* Grid styles -------------------------------------------------*/
 .leading {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+    place-items: start / start;
 }  
 
 .leading-bigtext{
     grid-column: 1/2;
-    grid-row: 1/3;
+    grid-row: 1/2;
+    align-self: start;
 }
 
 .leading-text{
     grid-column: 2/3;
     grid-row: 1/2;
+    align-self: start;
 }
 
 #form{
@@ -42,9 +44,9 @@
   }
   
   .leading {
-    height: 20vw;
-    margin-bottom: 2vw;
-    padding: 2vw;
+    height: 20vmax;
+    margin-bottom: 2vmax;
+    padding: 2vmax;
     color: white;
     background: url('https://cdn.glitch.com/a5121e34-96b3-4a70-8227-040c51e64fae%2Fcat.jpg?1509635989509') center #333 no-repeat;
     background-size: cover;
@@ -53,14 +55,14 @@
   }
   
   .leading-bigtext {
-    margin-right: 4vw;
+    margin: 0 4vmax 0 0;
     font-weight: bold;
-    font-size: 24vw;
+    font-size: 5vmax;
   }
   
   @media (min-width: 700px) {
     .leading-bigtext {
-      font-size: 10vw;
+      font-size: 8vmax;
       line-height: 1.15;
     }
   }
@@ -102,9 +104,8 @@
 FORM
 */
 
-label {
-    display: block;
-    margin: 0.8em;
+form {
+    font-size: 1.5vmax;
 }
 
 .form-field {
@@ -112,12 +113,14 @@ label {
     color: white;
     border: none;
     border-bottom: 2px solid;
-    border-radius: 0.25em;
-    padding: 0.5em 1em;
+}
+
+::placeholder {
+    color: rgba(255, 255, 255, 0.6)
 }
 
 #myLocation {
-    width: 5em;
+    width: 12.8em;
 }
 
 #catNum {
@@ -126,30 +129,30 @@ label {
 
 #catButton {
     margin: 0.8em;
+    margin-left: 0;
     width: 4em;
+    border-radius: 0.25em;
+    padding: 0.5em 1em;
     
 }
 
-label {
+/* I need to stop the blinking when someone clicks on the field and when if there's any content in the field */
+.form-field, label {
     position: relative;
 }
 
 label i {
     position: absolute;
-    width: 1px;
+    width: 10px;
     height: 80%;
-    background-color: gray;
-    left: 5px;
+    background-color: #ffffff;
+    left: 100%;
     top: 10%;
     animation-name: blink;
     animation-duration: 800ms;
     animation-iteration-count: infinite;
     opacity: 1;
-}
-
-label input:focus + i {
-    display: none;
-}
+}   
 
 @keyframes blink {
     from { opacity: 1; }
@@ -157,12 +160,12 @@ label input:focus + i {
 }
 
 
-input:invalid+i+span:after {
+input:invalid+span:after {
     content: '✖';
     padding-left: 5px;
   }
   
-input:valid+i+span:after {
+input:valid+span:after {
     content: '✓';
     padding-left: 5px;
   }
