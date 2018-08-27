@@ -1,76 +1,168 @@
-body {
-    display: grid;
-    grid-template: 10vmin repeat(2, 1fr) / 1fr;
-    grid-auto-rows: minmax(min-content, auto);
+/* Flex styles -------------------------------------------------*/
+  
+  @media (min-width: 700px) {
+   .leading {
+      display: flex;
+      align-items: center;
     }
-
-body * {
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    grid-row: 1 / 2;
-    text-align: center;
-    white-space: nowrap;
-}
-
-form {
-    display: inline-grid;
-    grid-template: 1fr / 1fr 1fr 5em 1fr;
-    justify-items: start;
-    align-items: start;
-
-    margin: 1.15em;
-}
-
-form label {
-    grid-column: 2 / 3;
-}
-
-form button {
-    grid-column: 3 / 4;    
-}
-
-input {
-    width: 8vmin;
-}
-
-button {
-    padding: 0.1em 1em;
-}
-
-section {
-    grid-row: 2 / 4;
-    justify-items: center;
-    align-items: start;
-
+  }
+  
+/* Grid styles -------------------------------------------------*/
+.leading {
     display: grid;
-    grid-template: 1fr / 1fr 1fr;
-    grid-auto-rows: minmax(min-content, auto);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}  
+
+.leading-bigtext{
+    grid-column: 1/2;
+    grid-row: 1/3;
 }
 
-#cat1 {
-    background-color: pink;
-    grid-column: 1 / 2;
+.leading-text{
+    grid-column: 2/3;
+    grid-row: 1/2;
 }
 
-#cat2 {
-    background-color: yellow;
-    grid-column: 2 / 3;
+#form{
+    grid-column: 2/3;
+    grid-row: 2/3;
 }
 
-img {
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 1em;
+  }
+  
+  
+/* Generic styles ----------------------------------------------*/
+  body {
+    font-family: 'Quicksand', sans-serif;
+  }
+  
+  .leading {
+    height: 20vw;
+    margin-bottom: 2vw;
+    padding: 2vw;
+    color: white;
+    background: url('https://cdn.glitch.com/a5121e34-96b3-4a70-8227-040c51e64fae%2Fcat.jpg?1509635989509') center #333 no-repeat;
+    background-size: cover;
+    color: white;
+    text-shadow: 0px 0px 5px #000;
+  }
+  
+  .leading-bigtext {
+    margin-right: 4vw;
+    font-weight: bold;
+    font-size: 24vw;
+  }
+  
+  @media (min-width: 700px) {
+    .leading-bigtext {
+      font-size: 10vw;
+      line-height: 1.15;
+    }
+  }
+  
+  .leading-text {
+    max-width: 900px;
+    font-size: 1.2em;
+    line-height: 1.4em;
+  }
+
+  main {
+      background-color: #3d3d3d;
+  }
+  
+  .cards {
+    max-width: 90%;
+    margin: 0 auto 2vw;
+  }
+  
+  article {
+    position: relative;
+  }
+  
+  .article-img {
+    height: 200px;
     width: 100%;
-    height: auto;
+    object-fit: cover;
+  }
+  
+  .article-title {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+/*
+FORM
+*/
+
+label {
+    display: block;
+    margin: 0.8em;
 }
 
-input:invalid+span:after {
+.form-field {
+    background-color: rgba(0,0,0,0);
+    color: white;
+    border: none;
+    border-bottom: 2px solid;
+    border-radius: 0.25em;
+    padding: 0.5em 1em;
+}
+
+#myLocation {
+    width: 5em;
+}
+
+#catNum {
+    width: 3em;
+}
+
+#catButton {
+    margin: 0.8em;
+    width: 4em;
+    
+}
+
+label {
+    position: relative;
+}
+
+label i {
+    position: absolute;
+    width: 1px;
+    height: 80%;
+    background-color: gray;
+    left: 5px;
+    top: 10%;
+    animation-name: blink;
+    animation-duration: 800ms;
+    animation-iteration-count: infinite;
+    opacity: 1;
+}
+
+label input:focus + i {
+    display: none;
+}
+
+@keyframes blink {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+
+input:invalid+i+span:after {
     content: '✖';
     padding-left: 5px;
   }
   
-input:valid+span:after {
+input:valid+i+span:after {
     content: '✓';
     padding-left: 5px;
   }
