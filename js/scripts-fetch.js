@@ -100,24 +100,25 @@ function sendRequest(){
 //////////// CURSOR  ///////////
 ////////////////////////////////
 
-// const inputs = document.querySelectorAll("input");
-// for (let i = 0; i < inputs.length; i++) {
-//     inputs[i].addEventListener ("change",    removeBlinkingCursor, false);
-//     inputs[i].addEventListener ("keyup",     removeBlinkingCursor, false);
-//     inputs[i].addEventListener ("focus",     removeBlinkingCursor, false);
-//     inputs[i].addEventListener ("blur",      removeBlinkingCursor, false);
-//     inputs[i].addEventListener ("mousedown", removeBlinkingCursor, false);
+const inputs = document.querySelectorAll("input");
+for (let i = 0; i < inputs.length; i++) {
+    //inputs[i].addEventListener ("change",    removeBlinkingCursor, false);
+    //inputs[i].addEventListener ("keyup",     removeBlinkingCursor, false);
+    inputs[i].addEventListener ("focus",     removeBlinkingCursor, false);
+    inputs[i].addEventListener ("blur",      removeBlinkingCursor, false);
+    inputs[i].addEventListener ("mousedown", removeBlinkingCursor, false);
 
-//     // // Initial update.
-//     // const evt = document.createEvent("HTMLEvents");
-//     // evt.initEvent ("change", false, true);
-//     // inputs[i].dispatchEvent (evt);
-// }
+    // // Initial update.
+    // const evt = document.createEvent("HTMLEvents");
+    // evt.initEvent ("change", false, true);
+    // inputs[i].dispatchEvent (evt);
+}
 
-// function removeBlinkingCursor(e) {
-//     const cursor = e.target.previousElementSibling.children[0];
-//     cursor.classList.remove("blink");
-// }
+function removeBlinkingCursor(e) {
+    const cursor = e.target.previousElementSibling.children[0];
+    console.log(cursor)
+    cursor.classList.remove("blink");
+}
 
 // Listen for number of cats
 document.getElementById("catButton").addEventListener('click', sendRequest, false);
