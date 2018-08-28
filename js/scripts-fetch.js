@@ -1,21 +1,43 @@
-// // DOM objects
-// const section = document.getElementById("catSection");
-// const figure = document.createElement("figure");
-// const image = document.createElement("img");
-// const caption = document.createElement("figcaption");
+////////////////////////////////
+//////////BUILD CAT ////////////
+////////////////////////////////
 
+// Cat Constructor
+class Cat {
+    constructor(imageObject) {
+        this.id = imageObject.id.$t;
+        this.animal = imageObject.animal.$t;
+        this.name = imageObject.name.$t;
+        this.src = imageObject.media.photos.photo[0].$t;
+        this.description = imageObject.description.$t;
+        this.age = imageObject.age.$t;
+        this.sex = imageObject.sex.$t === "F" ? "Female" : "Male";
+        this.breed = imageObject.breeds.breed.$t;
+        this.mix = imageObject.mix.$t;
+    }
 
-// // Cat Constructor
-// function Cat(imageObject){
-//     this.id = `cat-${imageObject.id}`;
-//     this.src = imageObject.src;
-//     this.alt = imageObject.alt;
-//     this.caption = imageObject.caption;
-// }
+    buildImg(){ 
+        let img = document.createElement("img");
+        img.id = `${this.name}-${this.id}` 
+        img.src = this.src;
+        img.alt = `${this.name} is a ${this.age}, ${this.sex} ${this.breed}.`
+        img.title = this.name;
+        return img
+    }
 
-// Cat.prototype.buildNode = function(){
-
-// }
+    buildCap(){
+        let cap = document.createElement("figcaption");
+        cap.textContent = this.description;
+        return cap;
+    }
+    
+    buildFig(image, caption){
+        let fig = document.createElement("figure");
+        fig.appendChild(image);
+        fig.appendChild(caption);
+        return fig;
+    }
+}
 
 // //append the node to the section
 // function appendNode(){
@@ -33,6 +55,8 @@
 //         // Create a fragment to hold cat nodes
 //         const domFrag = document.createDocumentFragment();
 //         // buildCatArray returns an array of cat instances, e.g. [{...}, {...}], each of which is a node. Those nodes are appended one by one to the fragment.
+
+
 //         // What exactly am I appending here? I have a new cat object instance from my constructor. How do I append that? This isn't going to work. I need to pass a node object to appendChild
 //         buildArray().forEach( element => domFrag.appendChild(element) );
 
@@ -50,6 +74,8 @@
 ////////////////////////////////
 ///////////// DATA  ////////////
 ////////////////////////////////
+
+let myData;
 
 // Request data from the cat API
 function sendRequest(){
@@ -91,7 +117,8 @@ function sendRequest(){
         return response.json();
     })
     .then(function(myJson) {
-        console.log(myJson);
+        myData = myJson.petfinder.pets.pet
+        console.log(myData);
     })
     .catch(function(response) {
         console.log('Something went wrong: ', response)

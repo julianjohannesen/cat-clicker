@@ -1,26 +1,26 @@
 /* Flex styles -------------------------------------------------*/
   
   @media (min-width: 700px) {
-   .leading {
+   .header {
       display: flex;
       align-items: center;
     }
   }
   
 /* Grid styles -------------------------------------------------*/
-.leading {
+.header {
     display: grid;
     grid-template: repeat(2, 1fr) / repeat(2, 1fr);
     place-items: start / start;
 }  
 
-.leading-bigtext{
+.header-bigtext{
     grid-column: 1/2;
     grid-row: 1/2;
     align-self: start;
 }
 
-.leading-text{
+.header-text{
     grid-column: 2/3;
     grid-row: 1/2;
     align-self: start;
@@ -58,7 +58,7 @@
     font-family: 'Quicksand', sans-serif;
   }
   
-  .leading {
+  .header {
     height: 20vmax;
     margin-bottom: 2vmax;
     padding: 2vmax;
@@ -69,20 +69,20 @@
     text-shadow: 0px 0px 5px #000;
   }
   
-  .leading-bigtext {
+  .header-bigtext {
     margin: 0 4vmax 0 0;
     font-weight: bold;
     font-size: 5vmax;
   }
   
   @media (min-width: 700px) {
-    .leading-bigtext {
+    .header-bigtext {
       font-size: 8vmax;
       line-height: 1.15;
     }
   }
   
-  .leading-text {
+  .header-text {
     max-width: 900px;
     font-size: 2vmax;
     line-height: 1.4em;
@@ -97,17 +97,17 @@
     margin: 0 auto 2vw;
   }
   
-  article {
+  figure {
     position: relative;
   }
   
-  .article-img {
+  .figure-img {
     height: 200px;
     width: 100%;
     object-fit: cover;
   }
   
-  .article-title {
+  .figure-title {
     position: absolute;
     bottom: 0;
     width: 100%;
