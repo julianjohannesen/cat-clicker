@@ -59,7 +59,7 @@ function sendRequest() {
     key: "add4fdca944ac818ef1bee3a08e0602b",
     format: "json",
     output: "full",
-    animal: "Cat",
+    animal: "cat",
     count: document.getElementById("catNum").value,
     myLocation: document.getElementById("myLocation").value.replace(/ +/g, "")
   };
@@ -80,8 +80,7 @@ function sendRequest() {
     build() {
       return encodeURI(
         `https://api.petfinder.com/${this.method}?key=${this.key}&format=${
-          this.format
-        }&location=${this.myLocation}&count=${this.count}`
+          this.format}&location=${this.myLocation}&count=${this.count}&animal=${this.animal}`
       );
     }
   }
